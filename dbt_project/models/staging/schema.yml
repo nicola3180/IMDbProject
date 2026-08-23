@@ -1,0 +1,52 @@
+﻿version: 2
+
+models:
+  - name: stg_name_basics
+    columns:
+      - name: person_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_title_basics
+    columns:
+      - name: title_id
+        data_tests:
+          - unique
+          - not_null
+      - name: is_adult
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+
+  - name: stg_title_ratings
+    columns:
+      - name: title_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_title_basics')
+              field: title_id
+
+  - name: stg_title_crew
+    columns:
+      - name: title_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_title_akas
+    columns:
+      - name: title_id
+        data_tests:
+          - not_null
+
+  - name: stg_title_principals
+    columns:
+      - name: title_id
+        data_tests:
+          - not_null
+      - name: person_id
+        data_tests:
+          - not_null

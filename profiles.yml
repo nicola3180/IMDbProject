@@ -1,0 +1,8 @@
+dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('IMDB_DUCKDB_PATH', '../warehouse.duckdb') }}"
+      threads: 4
+      schema: main

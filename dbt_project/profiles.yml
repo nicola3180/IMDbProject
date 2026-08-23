@@ -1,0 +1,9 @@
+﻿dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /opt/airflow/warehouse.duckdb
+      threads: 1
+      settings:
+        preserve_insertion_order: false

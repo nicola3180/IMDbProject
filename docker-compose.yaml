@@ -1,0 +1,22 @@
+﻿services:
+  airflow-standalone:
+    build: .
+    image: custom-airflow-dbt:latest
+    container_name: airflow_imdb
+    restart: always
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=False
+      - AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=30
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./raw:/opt/airflow/raw
+      - ./dbt_project:/opt/airflow/dbt_project
+      - ./warehouse.duckdb:/opt/airflow/warehouse.duckdb
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "airflow db migrate &&
+               airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin || true &&
+               airflow webserver --port 8080 & airflow scheduler"

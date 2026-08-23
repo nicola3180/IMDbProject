@@ -1,0 +1,24 @@
+# DuckDB warehouse & local data
+*.duckdb
+*.duckdb.wal
+warehouse.duckdb
+
+# Raw data & Parquet files
+raw/
+*.tsv
+*.tsv.gz
+*.parquet
+
+# dbt generated folders
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# Airflow logs & local env
+logs/
+__pycache__/
+*.pyc
+.env
+.venv/
+env/
+.DS_Store
