@@ -55,10 +55,9 @@ imdbProject/
 ## How to Run from Scratch
 ### 1. Clone the repository
 
-```bash
-git clone <repository_url>
+```bash!
+git clone https://github.com/nicola3180/IMDbProject.git
 cd imdbProject
-
 ```
 ### 2. Initialize an empty DuckDB file
 
